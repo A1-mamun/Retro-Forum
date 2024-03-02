@@ -31,6 +31,58 @@
 <body>
     <header class="container mx-auto">
         <!-- navbar -->
+        <nav class="mt-4 md:mt-10">
+            <div class="navbar bg-base-100">
+                <div class="navbar-start flex-1">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm gap-4 dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box text-base">
+                            <li><a class="btn btn-circle"><img src="images/Home.png" alt=""></a></li>
+                            <li><a class="btn btn-circle"><img src="images/Edit.png" alt=""></a></li>
+                            <li><a class="btn btn-circle"><img src="images/profile.png" alt=""></a></li>
+                            <li><a class="btn btn-circle"><img src="images/flag.png" alt=""></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="btn btn-ghost text-2xl md:text-4xl font-extrabold">ReTro</a>
+                </div>
+                <div class="navbar-end hidden lg:flex ">
+                    <ul class="flex gap-4 text-lg font-bold px-1">
+                        <li><a>
+                                <div class="tooltip" data-tip="Home"><button class="btn btn-circle"><img
+                                            src="images/Home.png" alt=""></button></div>
+                            </a></li>
+                        <li><a>
+                                <div class="tooltip" data-tip="Edit"><button class="btn btn-circle"><img
+                                            src="images/Edit.png" alt=""></button></div>
+                            </a></li>
+                        <li><a>
+                                <div class="tooltip" data-tip="Profile"><button class="btn btn-circle"><img
+                                            src="images/profile.png" alt=""></button></div>
+                            </a></li>
+                        <li><a>
+                                <div class="tooltip" data-tip="Flag"><button class="btn btn-circle"><img
+                                            src="images/flag.png" alt=""></button></div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="ml-3 text-lg">
+                    <button class="btn btn-primary text-xl rounded-full px-8 ">
+                        Sign In
+                    </button>
+
+                </div>
+            </div>
+        </nav>
     </header>
     <main>
         <!-- banner section -->
