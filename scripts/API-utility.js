@@ -1,8 +1,3 @@
-function loadLatestPost() {
-    fetch("https://openapi.programming-hero.com/api/retro-forum/latest-posts")
-        .then((res) => res.json())
-        .then((data) => displayLatestPost(data));
-}
 // function for load all post & categorised post
 function loadAllPost(category) {
     // document.getElementById("mark-as-read").classList.add("hidden")
@@ -14,6 +9,13 @@ function loadAllPost(category) {
             .then((res) => res.json())
             .then((data) => displayAllPost(data.posts));
     }, 2000);
+}
+
+// function for load latest post API
+function loadLatestPost() {
+    fetch("https://openapi.programming-hero.com/api/retro-forum/latest-posts")
+        .then((res) => res.json())
+        .then((data) => displayLatestPost(data));
 }
 
 // function for display latest post
@@ -53,7 +55,7 @@ function displayLatestPost(posts) {
 
 }
 
-// function for display all post
+// function for display all post and categorised post
 function displayAllPost(posts) {
     // console.log(posts)
     const allPostContainer = document.getElementById("all-post-container");
@@ -106,6 +108,7 @@ function displayAllPost(posts) {
     }
 }
 
+// function for add on mark as reed field
 function addOnRead(post) {
     // console.log("clicked", fieldId)
     // console.log(post)
@@ -134,8 +137,10 @@ function addOnRead(post) {
     readNumber.innerText = readNumberInt
 }
 
-
+// function call for load latest post API
 loadLatestPost();
+
+// function call for load All And categorised post API
 loadAllPost("")
 
 // handle search function
