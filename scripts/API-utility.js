@@ -22,7 +22,7 @@ function displayLatestPost(posts) {
     const latestPostContainer = document.getElementById("latest-post-container");
     for (const post of posts) {
         const designation = (post.author.designation === undefined) ? "Unknown" : post.author.designation
-        const postDate = (post.author.posted_date === undefined) ? "Unknown" : post.author.posted_date
+        const postDate = (post.author.posted_date === undefined) ? "No Publish Date" : post.author.posted_date
         const postCard = document.createElement("div")
         postCard.classList = `card card-compact bg-base-100 shadow-xl border border-[#12132D26]`
         postCard.innerHTML = `
@@ -63,7 +63,7 @@ function displayAllPost(posts) {
         const status = (post.isActive === true) ? "badge-success" : "badge-error"
         // const postDate = (post.author.posted_date === undefined) ? "Unknown" : post.author.posted_date
         const postCard = document.createElement("div")
-        postCard.classList = `bg-[#F3F3F5] p-10 rounded-3xl flex flex-col lg:flex-row gap-5 lg:gap-8 font-inter`
+        postCard.classList = `bg-[#F3F3F5] p-10 rounded-3xl shadow-2xl flex flex-col lg:flex-row gap-5 lg:gap-8 font-inter`
         postCard.innerHTML = `
                             <div class="indicator w-20 h-20 ">
                                 <img class=" rounded-2xl" src="${post.image}" alt="">
@@ -94,14 +94,44 @@ function displayAllPost(posts) {
                                             <img src="images/clock.png" alt="">
                                             <p>${post.posted_time}   <span> min</span></p>
                                         </div>
-                                        <img src="images/email.png" alt="">
+                                        <img class="btn btn-circle mail" src="images/email.png" alt="">
                                     </div>
 
                                 </div>
                             </div>
             `
+        const mailButton = postCard.querySelector('.mail')
+        mailButton.addEventListener("click", () => addOnRead(post))
         allPostContainer.appendChild(postCard)
     }
+}
+
+function addOnRead(post) {
+    // console.log("clicked", fieldId)
+    // console.log(post)
+    const markReadContainer = document.getElementById("mark-as-read")
+    const readCard = document.createElement("div")
+    readCard.classList = `bg-white flex justify-between p-4 rounded-2xl mt-3 lg:mt-5 shadow-xl`
+    readCard.innerHTML = `
+                        <h3 class="lg:text-lg font-semibold ">${post.title}</h3>
+                        <div class="flex gap-2 items-center text-[#12132D99] lg:text-lg pr-4 font-inter">
+                            <img src="images/eye.png" alt="">
+                            <p>${post.view_count}</p>
+                        </div>
+                        `
+    markReadContainer.appendChild(readCard);
+
+    const readNumber = document.getElementById("read-number")
+    const readNumberText = readNumber.innerText;
+    console.log(readNumberText)
+    let readNumberInt = parseInt(readNumberText)
+    console.log(readNumberInt)
+
+    readNumberInt++;
+    console.log(readNumberInt)
+
+    // set the incremented value
+    readNumber.innerText = readNumberInt
 }
 
 
@@ -112,6 +142,12 @@ loadAllPost("")
 function searchHandle() {
     const searchField = document.getElementById("search-input");
     const searchInput = searchField.value;
+    const valueLowerCase = searchInput.toLowerCase()
+    // console.log(valueLowerCase)
+    if (valueLowerCase !== "coding" && valueLowerCase !== "comedy" && valueLowerCase !== "music") {
+        alert("Category must be 'coding' 'comedy' or 'music' ")
+        return;
+    }
     const category = `?category=${searchInput}`
     loadAllPost(category);
 }
